@@ -1,0 +1,23 @@
+#chingamon{
+    color: #76f281;
+    width: 190px;
+    height: 50px;
+    background-color: rgb(11, 97, 97);
+    border-radius: 1rem;
+}
+label{
+    background-color: teal;
+    width: 190px;
+    height: 50px;
+}
+input{
+    background-color: aquamarine;
+    width: 100px;
+    height: 50px;
+}
+button{
+    background-color: blueviolet;
+    width: 190px;
+    height: 50px;
+    color: azure;
+}

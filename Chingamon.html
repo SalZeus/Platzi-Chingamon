@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chingamón!☄️</title>
+    <script src="Chingamon.js"></script>
+    <link rel="stylesheet" href="./chingamon.css">
+</head>
+<body>
+    <h1 class="titulo" id="chingamon">Chingamon!</h1>
+    <section id="descripcion-mascotas">
+        <p> Estas son tus opciones!<br/>
+
+            Doguego ->fritación🍽️<br/>
+            Pepitas ->  pedradas🪨<br/>
+            Gacharco -> traguito🥃<br/>
+            Chindagato -> pedradas🪨 - fritación🍽️<br/>
+            Fripez -> pedradas🪨 - traguito🥃<br/>
+            Estreñisaurio ->  fritación🍽️ - traguito🥃 <br/>
+        </p>
+    </section>
+    
+    <section id="seleccionar-mascota">
+        <h2>Con quien mandarás Chingadazos?</h2>
+        
+        <input type="radio" name="mascota" id="doguego">
+            <label for="doguego">Doguego</label><br/>
+        <input type="radio" name="mascota" id="pepitas">
+            <label for="pepitas">Pepitas</label><br/>
+        <input type="radio" name="mascota" id="gacharco">
+            <label for="gacharco">Gacharco</label><br/>
+        <input type="radio" name="mascota" id="chindagato">
+            <label for="chindagato">Chindagato</label><br/>
+        <input type="radio" name="mascota" id="fripez">
+            <label for="fripez">Fripez</label><br/>
+        <input type="radio" name="mascota" id="estreñisaurio">
+            <label for="estreñisaurio">Estreñisaurio</label><br/>
+        <br/>
+        <button type="button" id="boton-mascota">Zi Confirmo</button><br/>
+    </section>
+    <section id="seleccionar-ataque">
+        <h2>Eligue el tipo de chingadazo!</h2>
+
+        <p><span id="mascota-jugador"></span> tiene la capacidad de recibir <span id="vidas-jugador">3</span> chingadazos más!</p>
+        <p>La mascota <span id="mascota-enemigo"></span> enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
+        <p>
+            <button type="button" id="boton-fuego">la fritación🍽️</button><br/>
+            <button type="button" id="boton-agua">un traguito🥃</button><br/>
+            <button type="button" id="boton-tierra">pedradas🪨</button><br/>
+        </p>
+    </section>
+    
+    <section id="mensajes">
+
+    </section>
+    <section id="reiniciar">
+        <button type="button" id="boton-reiniciar">Otra vez plis</button>
+    </section>
+</body>
+</html>
