@@ -6,38 +6,64 @@
     <title>Chingamón!☄️</title>
     <script src="Chingamon.js"></script>
     <link rel="stylesheet" href="./chingamon.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik+Iso&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Lilita+One&family=Rubik+Iso&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1 class="titulo" id="chingamon">Chingamon!</h1>
     <section id="descripcion-mascotas">
-        <p> Estas son tus opciones!<br/>
-
-            Doguego ->fritación🍽️<br/>
-            Pepitas ->  pedradas🪨<br/>
-            Gacharco -> traguito🥃<br/>
-            Chindagato -> pedradas🪨 - fritación🍽️<br/>
-            Fripez -> pedradas🪨 - traguito🥃<br/>
-            Estreñisaurio ->  fritación🍽️ - traguito🥃 <br/>
-        </p>
+        <h1 class="titulo" id="chingamon">Chingamon!</h1>
+        <div class="tipos">
+            <p> Estas son tus opciones!</p>
+            <p>Doguego</br>fritación🍽️</p>
+            <p>Pepitas</br>pedradas🪨</p>
+            <p>Gacharco</br>traguito🥃</p>
+            <p>Chindagato</br>pedradas🪨 y fritación🍽️</p>
+            <p>Fripez</br>pedradas🪨 y traguito🥃</p>
+            <p>Estreñisaurio</br>fritación🍽️ y traguito🥃 </p>
+        </div>
     </section>
     
     <section id="seleccionar-mascota">
-        <h2>Con quien mandarás Chingadazos?</h2>
-        
-        <input type="radio" name="mascota" id="doguego">
-            <label for="doguego">Doguego</label><br/>
-        <input type="radio" name="mascota" id="pepitas">
-            <label for="pepitas">Pepitas</label><br/>
-        <input type="radio" name="mascota" id="gacharco">
-            <label for="gacharco">Gacharco</label><br/>
-        <input type="radio" name="mascota" id="chindagato">
-            <label for="chindagato">Chindagato</label><br/>
-        <input type="radio" name="mascota" id="fripez">
-            <label for="fripez">Fripez</label><br/>
-        <input type="radio" name="mascota" id="estreñisaurio">
-            <label for="estreñisaurio">Estreñisaurio</label><br/>
-        <br/>
-        <button type="button" id="boton-mascota">Zi Confirmo</button><br/>
+        <h2 class="subtitulo">Con quien mandarás Chingadazos?</h2>
+        <div class="tarjetas">
+            <input type="radio" name="mascota" id="doguego">
+                <label class="tarjeta-de-mokepon" for="doguego" id="doguego">
+                    <p>Doguego</p>
+                    <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/46693f92-060f-44ea-94f4-5a8a2c78c55c/DreamShaper_v5_fire_dog_small_pet_pokemon_style_anime_lookign_0.jpg" alt="Doguego">
+                </label>
+            <input type="radio" name="mascota" id="pepitas">
+                <label class="tarjeta-de-mokepon" for="pepitas" id="pepitas">
+                    <p>Pepitas</p>
+                    <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af3a277b-909a-49e5-90cc-576c02525594/DreamShaper_v5_earth_monster_small_anime_looking_throws_seeds_0.jpg" alt="Pepitas">
+                </label>
+            <input type="radio" name="mascota" id="gacharco">
+                <label class="tarjeta-de-mokepon" for="gacharco" id="gacharco">
+                    <p>Gacharco</p>
+                    <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/85df02a1-d2f7-484b-b9d9-78dea44bc8cd/DreamShaper_v5_water_monster_small_anime_looking_throws_water_0.jpg" alt="Gacharco">
+                </label>
+            </div>
+            <div class="tarjetas">
+                <input type="radio" name="mascota" id="chindagato">
+                    <label class="tarjeta-de-mokepon" for="chindagato" id="chindagato">
+                        <p>Chindagato</p>
+                        <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/ba3bcea2-49a2-4a56-9038-527ce1d5dd6c/DreamShaper_v5_fire_and_earth_monster_small_cat_anime_looking_0.jpg" alt="Chindagato">
+                    </label>
+                <input type="radio" name="mascota" id="fripez">
+                    <label class="tarjeta-de-mokepon" for="fripez" id="fripez">
+                        <p>Fripez</p>
+                        <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/7df5eb6c-5bae-476c-a3f9-3a38b3cd4527/DreamShaper_v5_fire_and_water_monster_small_fish_looking_anime_0.jpg" alt="Fripez">
+                    </label>
+                <input type="radio" name="mascota" id="estreñisaurio">
+                    <label class="tarjeta-de-mokepon" for="estreñisaurio" id="estreñisaurio">
+                        <p>Estreñisaurio</p>
+                        <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg" alt="Estreñisaurio">
+                    </label>
+            </div>
+        <button type="button" id="boton-mascota" style="margin-top: 20px;">Zi Confirmo</button><br/>
     </section>
     <section id="seleccionar-ataque">
         <h2>Eligue el tipo de chingadazo!</h2>
