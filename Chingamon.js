@@ -29,7 +29,7 @@ function seleccionarMascotaJugador(){
     sectionDescripcionMascotas.style.display = "none";
 
     const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-    sectionSeleccionarAtaque.style.display = "block";
+    sectionSeleccionarAtaque.style.display = "flex";
 
 
     const inputDoguego = document.getElementById("doguego")
@@ -41,28 +41,22 @@ function seleccionarMascotaJugador(){
     const spanMascotaJugador = document.getElementById("mascota-jugador")
 
     if(inputDoguego.checked == true){
-        alert("Doguego es tu papu")
-        spanMascotaJugador.innerHTML = "Doguego"
+        spanMascotaJugador.innerHTML = " Doguego "
     }
     else if(inputPepitas.checked == true){
-        alert("pepitas es tu papu")
-        spanMascotaJugador.innerHTML = "Pepitas"
+        spanMascotaJugador.innerHTML = " Pepitas "
     }
     else if(inputGacharco.checked == true){
-        alert("gacharco es tu papu")
-        spanMascotaJugador.innerHTML = "Gacharco"
+        spanMascotaJugador.innerHTML = " Gacharco "
     }
     else if(inputChindagato.checked == true){
-        alert("chindagato es tu papu")
-        spanMascotaJugador.innerHTML = "Chindagato"
+        spanMascotaJugador.innerHTML = " Chindagato "
     }
     else if(inputFripez.checked == true){
-        alert("fripez es tu papu")
-        spanMascotaJugador.innerHTML = "Fripez"
+        spanMascotaJugador.innerHTML = " Fripez "
     }
     else if(inputEstreñisaurio.checked == true){
-        alert("estreñisaurio es tu papu")
-        spanMascotaJugador.innerHTML = "Estreñisaurio"
+        spanMascotaJugador.innerHTML = " Estreñisaurio "
     }
     else{
         alert("Intenta de nuevo, presiona enter e intenta seleccionar a tu Chingamon!")
@@ -75,17 +69,17 @@ function combate(){
     const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
     if(ataqueEnemigo == ataqueJugador){
-        crearMensaje(" parece que solo hubo un bailesito")
+        crearMensaje("Parece que Solo Hubo un Bailesito")
     }
     else if(ataqueJugador== "el traguito🥃"&&ataqueEnemigo=="la fritación🍽️"
             ||ataqueJugador=="la fritación🍽️"&&ataqueEnemigo=="las pedradas🪨"
             || ataqueJugador=="las pedradas🪨"&&ataqueEnemigo=="el traguito🥃"){        
-        crearMensaje(" le diste pisito :3 que viva la violencia!")
+        crearMensaje("Le diste Pisito :3 Que viva la Violencia!")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
     }
     else{
-        crearMensaje(" tu chingamon ha actualizado su base de datos de virus del reset que le dieron :'c")
+        crearMensaje("Tu chingamon ha Actualizado su Base de Datos de Virus del Reset que le Dieron :'c")
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
@@ -101,22 +95,23 @@ function revisarVidas(){
     }
 }
 
+
 function crearMensajeFinal(mensajeFinal){
-    let sectionMensajes = document.getElementById("mensajes")
+    let sectionMensajes = document.getElementById("resultado")
+    
     let parrafo = document.createElement("p")
-    parrafo.innerHTML=mensajeFinal
-    sectionMensajes.appendChild(parrafo)
-   
+    sectionMensajes.innerHTML=mensajeFinal
+    
     const botonFuego =document.getElementById("boton-fuego")
-        botonFuego.disabled = true
+    botonFuego.disabled = true
     const botonAgua = document.getElementById("boton-agua")
-        botonAgua.disabled = true
+    botonAgua.disabled = true
     const botonTierra = document.getElementById("boton-tierra")
-        botonTierra.disabled = true
+    botonTierra.disabled = true
 
     const botonReiniciar = document.getElementById("boton-reiniciar")
-        botonReiniciar.style.display = "block";
-
+    botonReiniciar.style.display = "block";
+    
 }
 
 function ataqueFuego(){
@@ -150,19 +145,11 @@ function ataqueAleatorioEnemigo(){
     }
 }
 
-function crearMensaje(resultado){
-    let sectionMensajes = document.getElementById("mensajes")
-    let parrafo = document.createElement("p")
-
-    parrafo.innerHTML="Tu mascota se lo chingo con "+ataqueJugador+" , el monstruo inmundo enemigo usó "+ataqueEnemigo + resultado
-    
-    sectionMensajes.appendChild(parrafo)
-}
 
 function seleccionarMascotaEnemigo(){
     let mascotaAleatoria = aleatorio(1, 6);
     const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
-
+    
     if(mascotaAleatoria == 1){
         spanMascotaEnemigo.innerHTML= "Doguego"
     }
@@ -184,10 +171,25 @@ function seleccionarMascotaEnemigo(){
     else{
         alert("hmmm... algo anda mal")
     }
-
-
+    
+    
 }
 
+function crearMensaje(resultado){
+    let sectionMensajes = document.getElementById("resultado")
+    let ataquesDelJugador = document.getElementById("ataques-del-jugador")
+    let ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+        
+    let nuevoAtaqueDelJugador = document.createElement("p")
+    let NuevoAtaqueDelEnemigo = document.createElement("p")
+
+    sectionMensajes.innerHTML = resultado;
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+    NuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
+    ataquesDelEnemigo.appendChild(NuevoAtaqueDelEnemigo)
+}
 function reiniciarJuego(){
     location.reload()
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chingamón!☄️</title>
+    <title>ChingaMón!☄️</title>
     <script src="Chingamon.js"></script>
     <link rel="stylesheet" href="./chingamon.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,12 +15,15 @@
 </head>
 <body>
     <section id="descripcion-mascotas">
-        <h1 class="titulo" id="chingamon">Chingamon!</h1>
+        <h1 class="titulo" id="chingamon">ChingaMon!</h1>
+        <p> Estas son tus opciones!</p>
         <div class="tipos">
-            <p> Estas son tus opciones!</p>
             <p>Doguego</br>fritación🍽️</p>
             <p>Pepitas</br>pedradas🪨</p>
             <p>Gacharco</br>traguito🥃</p>
+        </div>
+        <div class="tipos">
+            
             <p>Chindagato</br>pedradas🪨 y fritación🍽️</p>
             <p>Fripez</br>pedradas🪨 y traguito🥃</p>
             <p>Estreñisaurio</br>fritación🍽️ y traguito🥃 </p>
@@ -63,25 +66,51 @@
                         <img src="https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg" alt="Estreñisaurio">
                     </label>
             </div>
-        <button type="button" id="boton-mascota" style="margin-top: 20px;">Zi Confirmo</button><br/>
+        <button type="button" id="boton-mascota">Zi Confirmo</button><br/>
     </section>
     <section id="seleccionar-ataque">
-        <h2>Eligue el tipo de chingadazo!</h2>
+        <h1 class="titulo" id="chingamon">ChingaMon!</h1>
 
-        <p><span id="mascota-jugador"></span> tiene la capacidad de recibir <span id="vidas-jugador">3</span> chingadazos más!</p>
-        <p>La mascota <span id="mascota-enemigo"></span> enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
-        <p>
-            <button type="button" id="boton-fuego">la fritación🍽️</button><br/>
-            <button type="button" id="boton-agua">un traguito🥃</button><br/>
-            <button type="button" id="boton-tierra">pedradas🪨</button><br/>
-        </p>
-    </section>
-    
-    <section id="mensajes">
+        <h2 class="subtitulo">Eligue el tipo de chingadazo!</h2>
+        
+        <div id="botones-de-ataque">
+            <button class="boton-ataque" type="button" id="boton-fuego">la fritación🍽️</button><br/>
+            <button class="boton-ataque" type="button" id="boton-agua">un traguito🥃</button><br/>
+            <button class="boton-ataque" type="button" id="boton-tierra">pedradas🪨</button><br/>
+        </div>
 
-    </section>
-    <section id="reiniciar">
-        <button type="button" id="boton-reiniciar">Otra vez plis</button>
-    </section>
+        <div>
+
+            <section id="mensajes">
+                <p id="resultado">
+                    Ready... Fight! </br>
+                    *Musica de Mortal Kombat
+                    
+                </p>
+            </section>
+            
+            
+            <section id="reiniciar">
+                <button type="button" id="boton-reiniciar">Otra vez plis</button>
+            </section>
+            
+        </div>
+        <div class="combates">
+
+            <div class="">
+                <p id="vidas-jugador">3</p>
+                <p id="mascota-jugador"></p>
+                <div id="ataques-del-jugador"></div>
+            </div>
+
+            <div class="">
+                <p id="vidas-enemigo">3</p>
+                <p id="mascota-enemigo"></p>
+                <div id="ataques-del-enemigo"></div>                
+            </div>
+            
+        </div>
+
+        </section>
 </body>
 </html>
