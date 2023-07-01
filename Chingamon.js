@@ -1,13 +1,47 @@
-let ataqueJugador = "";
 let ataqueEnemigo="";
 let vidasJugador=3;
 let vidasEnemigo=3;
 
+let chingamones=[]
+let opcionDeChingamones
+
+let mascotaJugador
+let ataquesChingamon
+let ataqueJugador = []
+
+let inputDoguego
+let inputPepitas
+let inputGacharco
+let inputChindagato
+let inputFripez
+let inputEstreñisaurio
+let botonFuego 
+let botonAgua 
+let botonTierra
+let arregloBotones = {}
+
+const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
+const botonMascotaJugador = document.getElementById("boton-mascota")
+const botonReiniciar = document.getElementById("boton-reiniciar")
+const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
+const sectionDescripcionMascotas = document.getElementById("descripcion-mascotas")
+const sectionMensajes = document.getElementById("resultado")
+const contenedorTarjetas = document.getElementById("contenedor-de-tarjetas")
+const contenedorAtaques = document.getElementById("contenedor-de-ataques")
+
+const spanMascotaJugador = document.getElementById("mascota-jugador")
+const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
+const spanVidasJugador =document.getElementById("vidas-jugador")
+const spanVidasEnemigo = document.getElementById("vidas-enemigo")
+
+const ataquesDelJugador = document.getElementById("ataques-del-jugador")
+const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
 class Chingamon{
     constructor(nombre, foto, vida){
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
+        this.ataques = [];
     }
 }
 
@@ -18,41 +52,80 @@ let chindagato = new Chingamon("Chindagato", "https://cdn.leonardo.ai/users/25ac
 let fripez = new Chingamon("Fripez", "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/7df5eb6c-5bae-476c-a3f9-3a38b3cd4527/DreamShaper_v5_fire_and_water_monster_small_fish_looking_anime_0.jpg", 5)
 let estreñisaurio = new Chingamon("Estreñisaurio", "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg", 5)
 
-const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque")
-const botonMascotaJugador = document.getElementById("boton-mascota")
-const botonFuego =document.getElementById("boton-fuego")
-const botonAgua = document.getElementById("boton-agua")
-const botonTierra = document.getElementById("boton-tierra")
-const botonReiniciar = document.getElementById("boton-reiniciar")
-const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota")
-const sectionDescripcionMascotas = document.getElementById("descripcion-mascotas")
-const sectionMensajes = document.getElementById("resultado")
+chingamones.push(doguego, pepitas, gacharco, chindagato, fripez, estreñisaurio)
 
-const inputDoguego = document.getElementById("doguego")
-const inputPepitas = document.getElementById("pepitas")
-const inputGacharco = document.getElementById("gacharco")
-const inputChindagato = document.getElementById("chindagato")
-const inputFripez = document.getElementById("fripez")
-const inputEstreñisaurio = document.getElementById("estreñisaurio")
-const spanMascotaJugador = document.getElementById("mascota-jugador")
-const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
-const spanVidasJugador =document.getElementById("vidas-jugador")
-const spanVidasEnemigo = document.getElementById("vidas-enemigo")
-const ataquesDelJugador = document.getElementById("ataques-del-jugador")
-const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+doguego.ataques.push(
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+)
+pepitas.ataques.push(
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+)
+gacharco.ataques.push(
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+)
+chindagato.ataques.push(
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+)
+fripez.ataques.push(
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+)
+estreñisaurio.ataques.push(
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+)
 
 
 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = "none";
+    botonReiniciar.style.display = "none";
+
+
+    chingamones.forEach((chingamon) =>{
+        opcionDeChingamones=`
+        <input type="radio" name="mascota" id=${chingamon.nombre}>
+        <label class="tarjeta-de-mokepon" for=${chingamon.nombre} id=${chingamon.nombre}">
+            <p>${chingamon.nombre}</p>
+            <img src=${chingamon.foto} alt=${chingamon.nombre}>
+        </label>
+        `
+
+        contenedorTarjetas.innerHTML += opcionDeChingamones
+
+        inputDoguego = document.getElementById("Doguego")
+        inputPepitas = document.getElementById("Pepitas")
+        inputGacharco = document.getElementById("Gacharco")
+        inputChindagato = document.getElementById("Chindagato")
+        inputFripez = document.getElementById("Fripez")
+        inputEstreñisaurio = document.getElementById("Estreñisaurio")
+    })
 
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
-    botonFuego.addEventListener("click", ataqueFuego)
-    botonAgua.addEventListener("click", ataqueAgua)
-    botonTierra.addEventListener("click", ataqueTierra)
 
     botonReiniciar.addEventListener("click", reiniciarJuego)
-    botonReiniciar.style.display = "none";
 }
 
 function seleccionarMascotaJugador(){
@@ -62,55 +135,94 @@ function seleccionarMascotaJugador(){
     sectionSeleccionarAtaque.style.display = "flex";
 
     if(inputDoguego.checked == true){
-        spanMascotaJugador.innerHTML = " Doguego "
+        spanMascotaJugador.innerHTML = inputDoguego.id
+        mascotaJugador =inputDoguego.id
     }
     else if(inputPepitas.checked == true){
-        spanMascotaJugador.innerHTML = " Pepitas "
+        spanMascotaJugador.innerHTML = inputPepitas.id
+        mascotaJugador =inputPepitas.id
     }
     else if(inputGacharco.checked == true){
-        spanMascotaJugador.innerHTML = " Gacharco "
+        spanMascotaJugador.innerHTML = inputGacharco.id
+        mascotaJugador =inputGacharco.id
     }
     else if(inputChindagato.checked == true){
-        spanMascotaJugador.innerHTML = " Chindagato "
+        spanMascotaJugador.innerHTML = inputChindagato.id
+        mascotaJugador =inputChindagato.id
     }
     else if(inputFripez.checked == true){
-        spanMascotaJugador.innerHTML = " Fripez "
+        spanMascotaJugador.innerHTML = inputFripez.id
+        mascotaJugador =inputFripez.id
     }
     else if(inputEstreñisaurio.checked == true){
-        spanMascotaJugador.innerHTML = " Estreñisaurio "
+        spanMascotaJugador.innerHTML = inputEstreñisaurio.id
+        mascotaJugador =inputEstreñisaurio.id
     }
     else{
         alert("Intenta de nuevo, presiona enter e intenta seleccionar a tu Chingamon!")
     }
+
+    
+    extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
 }
 
+function extraerAtaques(mascotaJugador){
+    let ataques
+    // console.log(mascotaJugador) funcionando
+    for(let i = 0; i < chingamones.length; i++) {
+        if(mascotaJugador === chingamones[i].nombre){
+            ataques = chingamones[i].ataques
+        }        
+    }
+    console.log(ataques)
+    mostrarAtaques(ataques)
+}
+
+function mostrarAtaques(ataques){
+    ataques.forEach((ataque) => {
+        ataquesChingamon=`
+        <button class="boton-ataque BAtaque" type="button" id=${ataque.id}>${ataque.nombre}</button><br/>
+        `
+        contenedorAtaques.innerHTML += ataquesChingamon
+        
+
+    })
+    
+    botonFuego = document.getElementById("boton-fuego")
+    botonAgua = document.getElementById("boton-agua")
+    botonTierra = document.getElementById("boton-tierra")
+    arregloBotones = document.querySelectorAll(".BAtaque")
+
+}
+
+function secuenciaAtaque(){
+    arregloBotones.forEach((boton) =>{
+        boton.addEventListener("click", (e) => {
+            if(e.target.textContent === "fritación🍽️"){
+                ataqueJugador.push("fuego")
+                console.log(ataqueJugador)
+                boton.style.background = "#2e4b38"
+            }
+            else if(e.target.textContent === "traguito🥃"){
+                ataqueJugador.push("agua")
+                console.log(ataqueJugador)
+                boton.style.background = "#2e4b38"
+            }
+            else{
+                ataqueJugador.push("tierra")
+                console.log(ataqueJugador)
+                boton.style.background = "#2e4b38"
+            }
+        })
+    })
+}
+
 function seleccionarMascotaEnemigo(){
-    let mascotaAleatoria = aleatorio(1, 6);
+    let mascotaAleatoria = aleatorio(0, chingamones.length-1);
     
-    if(mascotaAleatoria == 1){
-        spanMascotaEnemigo.innerHTML= "Doguego"
-    }
-    else if(mascotaAleatoria == 2){
-        spanMascotaEnemigo.innerHTML= "Pepitas"
-    }
-    else if(mascotaAleatoria == 3){
-        spanMascotaEnemigo.innerHTML= "Gacharco"
-    }
-    else if(mascotaAleatoria == 4){
-        spanMascotaEnemigo.innerHTML= "Chidagato"
-    }
-    else if(mascotaAleatoria == 5){
-        spanMascotaEnemigo.innerHTML= "Fripez"
-    }
-    else if(mascotaAleatoria == 6){
-        spanMascotaEnemigo.innerHTML= "Estreñisaurio"
-    }
-    else{
-        alert("hmmm... algo anda mal")
-    }
-    
-    
+    spanMascotaEnemigo.innerHTML = chingamones[mascotaAleatoria].nombre;  
+    secuenciaAtaque() 
 }
 
 function combate(){
@@ -169,18 +281,6 @@ function crearMensajeFinal(mensajeFinal){
     
 }
 
-function ataqueFuego(){
-    ataqueJugador="la fritación🍽️"
-    ataqueAleatorioEnemigo()
-}
-function ataqueAgua(){
-    ataqueJugador="el traguito🥃"
-    ataqueAleatorioEnemigo()
-}
-function ataqueTierra(){
-    ataqueJugador="las pedradas🪨"
-    ataqueAleatorioEnemigo()
-}
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
 }

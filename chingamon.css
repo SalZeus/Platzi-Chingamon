@@ -53,13 +53,15 @@ h2{
     color: teal;
     -webkit-text-stroke: 1px #65E892;
     font-size: 2rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
     text-align: center;
 }
 .tarjetas{
     display: flex;
     gap: 10px;
     margin: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .tarjeta-de-mokepon{
     background: teal;
@@ -126,7 +128,6 @@ p{
     font-family: 'Lilita One', cursive;
     font-weight: bold;
     font-size: 1.7rem;
-    margin: 5rem 0rem 3rem 0rem;
     padding: 4rem;
     border-radius: 6rem;
     border: 0.3rem solid black;
@@ -135,6 +136,7 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
 #resultado{
     background-color: #8696FE;
@@ -161,16 +163,63 @@ p{
 }
 .combates{
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 30rem 30rem;
+    grid-template-rows: 40rem 40rem;
     text-align: center;
+    overflow: hidden;
+    margin-top: 3rem;
 }
-#botones-de-ataque{
+#estado-chingamon-jugador{
+    background-color: #65e8939e;
+    margin-right: 4rem;
+    border-radius: 3rem;
+    overflow: hidden;
+    flex-direction: column-reverse;
+}
+#estado-chingamon-enemigo{
+    overflow: hidden;
+    background-color: #c565e86f;
+    margin-left: 4rem;
+    border-radius: 3rem;
+    flex-direction: column-reverse;
+
+}
+#contenedor-de-ataques{
+    overflow: hidden;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-bottom: 5rem;
+    justify-content: center;
+}
+.boton-ataque{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.boton-ataque:disabled{
+    background-color: #2e4b38;
+}
+#ataques-del-jugador{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
+    margin-inline-start: 0rem;
+    margin-inline-end: 0rem;
+}
+#ataques-del-enemigo{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
+    margin-inline-start: 0rem;
+    margin-inline-end: 0rem;
 }
 
 @media (max-width: 980px){
     .tarjetas{
         flex-direction: column;
+        flex-wrap: nowrap;
     }
     #botones-de-ataque{
         flex-direction: column;
