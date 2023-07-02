@@ -1,4 +1,6 @@
-let ataqueEnemigo="";
+let ataqueJugador=[]
+let ataqueEnemigo=[];
+let historialCombate =[]
 let vidasJugador=3;
 let vidasEnemigo=3;
 
@@ -7,7 +9,12 @@ let opcionDeChingamones
 
 let mascotaJugador
 let ataquesChingamon
-let ataqueJugador = []
+let ataquesChingamonEnemigo
+let indexAtaqueJugador
+let indexAtaqueEnemigo
+let indexHistorialCombate
+let victoriasJugador = 0
+let victoriasEnemigo = 0
 
 let inputDoguego
 let inputPepitas
@@ -28,6 +35,7 @@ const sectionDescripcionMascotas = document.getElementById("descripcion-mascotas
 const sectionMensajes = document.getElementById("resultado")
 const contenedorTarjetas = document.getElementById("contenedor-de-tarjetas")
 const contenedorAtaques = document.getElementById("contenedor-de-ataques")
+const contenedorCombate = document.getElementById("historial-combate")
 
 const spanMascotaJugador = document.getElementById("mascota-jugador")
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
@@ -196,60 +204,105 @@ function mostrarAtaques(ataques){
 
 }
 
+function seleccionarMascotaEnemigo(){
+    let mascotaAleatoria = aleatorio(0, chingamones.length-1);
+    
+    spanMascotaEnemigo.innerHTML = chingamones[mascotaAleatoria].nombre;
+    ataquesChingamonEnemigo =  chingamones[mascotaAleatoria].ataques
+    secuenciaAtaque() 
+}
+
 function secuenciaAtaque(){
     arregloBotones.forEach((boton) =>{
         boton.addEventListener("click", (e) => {
             if(e.target.textContent === "fritación🍽️"){
-                ataqueJugador.push("fuego")
-                console.log(ataqueJugador)
+                ataqueJugador.push("fritación🍽️")
                 boton.style.background = "#2e4b38"
+                boton.disabled="true"
             }
             else if(e.target.textContent === "traguito🥃"){
-                ataqueJugador.push("agua")
-                console.log(ataqueJugador)
+                ataqueJugador.push("traguito🥃")
                 boton.style.background = "#2e4b38"
+                boton.disabled="true"
             }
             else{
-                ataqueJugador.push("tierra")
-                console.log(ataqueJugador)
+                ataqueJugador.push("pedradas🪨")
                 boton.style.background = "#2e4b38"
+                boton.disabled="true"
             }
+            ataqueAleatorioEnemigo();
+
         })
     })
 }
 
-function seleccionarMascotaEnemigo(){
-    let mascotaAleatoria = aleatorio(0, chingamones.length-1);
-    
-    spanMascotaEnemigo.innerHTML = chingamones[mascotaAleatoria].nombre;  
-    secuenciaAtaque() 
-}
+function ataqueAleatorioEnemigo(){
+    let ataqueAleatorio = aleatorio(0, ataquesChingamonEnemigo.length-1)
 
-function combate(){
-    if(ataqueEnemigo == ataqueJugador){
-        crearMensaje("Parece que Solo Hubo un Bailesito")
+    if(ataqueAleatorio==0||ataqueAleatorio == 1){
+        ataqueEnemigo.push("fritación🍽️")
     }
-    else if(ataqueJugador== "el traguito🥃"&&ataqueEnemigo=="la fritación🍽️"
-    ||ataqueJugador=="la fritación🍽️"&&ataqueEnemigo=="las pedradas🪨"
-    || ataqueJugador=="las pedradas🪨"&&ataqueEnemigo=="el traguito🥃"){        
-        crearMensaje("Le diste Pisito :3 Que viva la Violencia!")
-        vidasEnemigo--
-        spanVidasEnemigo.innerHTML = vidasEnemigo
+    if(ataqueAleatorio==2||ataqueAleatorio==4){
+        ataqueEnemigo.push("traguito🥃")
     }
     else{
-        crearMensaje("Tu chingamon ha Actualizado su Base de Datos de Virus del Reset que le Dieron :'c")
-        vidasJugador--
-        spanVidasJugador.innerHTML = vidasJugador
+        ataqueEnemigo.push("pedradas🪨")
+    }
+    iniciarPelea()   
+}
+
+function iniciarPelea(){
+    if(ataqueJugador.length === 5){
+        combate()
+        // console.log(ataqueJugador)
+        // console.log(ataqueEnemigo)
+    }
+
+};
+
+function combate(){
+    
+    for (let i = 0; i < ataqueJugador.length; i++) {
+        if(ataqueJugador[i] === ataqueEnemigo[i]){
+            historialCombate.push("Parece que Solo Hubo un Bailesito")
+            indexAmbosOponentes(i, i, i)
+            crearMensaje("Parece que Solo Hubo un Bailesito")
+        }
+        else if(ataqueJugador[i] === "fritación🍽️" && ataqueEnemigo[i] === "pedradas🪨"
+                ||ataqueJugador[i]=="la fritación🍽️"&&ataqueEnemigo[i]=="las pedradas🪨"
+                || ataqueJugador[i]=="las pedradas🪨"&&ataqueEnemigo[i]=="el traguito🥃"){
+            historialCombate.push("Le diste Pisito :3 Que viva la Violencia!")
+            indexAmbosOponentes(i, i, i)
+            crearMensaje("Le diste Pisito :3 Que viva la Violencia!")
+            victoriasJugador++
+            spanVidasJugador.innerHTML = victoriasJugador
+        }
+        else{
+            historialCombate.push("La base de chingadatos de tu chingamon, ha sido chinga-actualizada :'c")
+            indexAmbosOponentes(i, i, i)
+            crearMensaje("La base de chingadatos de tu chingamon, ha sido actualizada :'c")
+            victoriasEnemigo++
+            spanVidasEnemigo.innerHTML = victoriasEnemigo
+        }
     }
     revisarVidas()
 }
 
+function indexAmbosOponentes(jugador, enemigo, combate){
+    indexAtaqueJugador = ataqueJugador[jugador]
+    indexAtaqueEnemigo = ataqueEnemigo[enemigo]
+    indexHistorialCombate = historialCombate[combate]
+}
+
 function revisarVidas(){
-    if(vidasJugador == 0){
-        crearMensajeFinal(" Finito perrillo! Has perdido :s")
+    if(victoriasJugador == victoriasEnemigo){
+        crearMensajeFinal("Se rompieron uss dientitos, pero abos estan igual de rotos :o")
     }
-    else if(vidasEnemigo == 0){
+    else if(victoriasJugador>victoriasEnemigo){
         crearMensajeFinal(" Nice, ya le diste piso al pobre, es hora de ir por el siguiente asesinato :3")
+    }
+    else{
+        crearMensajeFinal("A mi me late que tu chingamon esta listo para el medico papu 👀")
     }
 }
 
@@ -258,14 +311,17 @@ function crearMensaje(resultado){
     
         
     let nuevoAtaqueDelJugador = document.createElement("p")
-    let NuevoAtaqueDelEnemigo = document.createElement("p")
+    let nuevoAtaqueDelEnemigo = document.createElement("p")
+    let nuevoLogCombate = document.createElement("p")
 
     sectionMensajes.innerHTML = resultado;
-    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
-    NuevoAtaqueDelEnemigo.innerHTML = ataqueEnemigo;
+    nuevoAtaqueDelJugador.innerHTML = indexAtaqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = indexAtaqueEnemigo;
+    nuevoLogCombate.innerHTML = indexHistorialCombate
 
     ataquesDelJugador.appendChild(nuevoAtaqueDelJugador)
-    ataquesDelEnemigo.appendChild(NuevoAtaqueDelEnemigo)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo)
+    contenedorCombate.appendChild(nuevoLogCombate)
 }
 
 function crearMensajeFinal(mensajeFinal){
@@ -273,33 +329,12 @@ function crearMensajeFinal(mensajeFinal){
     let parrafo = document.createElement("p")
     sectionMensajes.innerHTML=mensajeFinal
     
-    botonFuego.disabled = true
-    botonAgua.disabled = true
-    botonTierra.disabled = true
-    
     botonReiniciar.style.display = "block";
     
 }
 
 function aleatorio(min, max){
     return Math.floor(Math.random() * (max - min + 1) + min)
-}
-function ataqueAleatorioEnemigo(){
-    let ataqueAleatorio = aleatorio(1,3)
-    if(ataqueAleatorio==1){
-        ataqueEnemigo="la fritación🍽️"
-        combate()
-    }
-    if(ataqueAleatorio==2){
-        ataqueEnemigo="el traguito🥃"
-        combate()
-    }
-    if(ataqueAleatorio==3){
-        ataqueEnemigo="las pedradas🪨"
-        combate()
-    }
-    
-    
 }
 
 function reiniciarJuego(){

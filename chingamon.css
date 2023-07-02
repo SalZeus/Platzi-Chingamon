@@ -142,7 +142,7 @@ p{
     background-color: #8696FE;
     color: #76f281;
     font-size: 3rem;
-
+    text-align: center;
 }
 #boton-reiniciar{
     width: 20rem;
@@ -163,29 +163,34 @@ p{
 }
 .combates{
     display: grid;
-    grid-template-columns: 30rem 30rem;
-    grid-template-rows: 40rem 40rem;
+    grid-template-columns: 25rem 25rem 25rem;
+    grid-template-rows: 40rem 40rem 40rem;
     text-align: center;
     overflow: hidden;
     margin-top: 3rem;
+
 }
 #estado-chingamon-jugador{
     background-color: #65e8939e;
-    margin-right: 4rem;
+    margin-right: 1rem;
+    border-radius: 3rem;
+    overflow: hidden;
+    flex-direction: column-reverse;
+}
+#historial-combate{
+    background-color: #65e8939e;
     border-radius: 3rem;
     overflow: hidden;
     flex-direction: column-reverse;
 }
 #estado-chingamon-enemigo{
-    overflow: hidden;
     background-color: #c565e86f;
-    margin-left: 4rem;
+    margin-left: 1rem;
     border-radius: 3rem;
     flex-direction: column-reverse;
 
 }
 #contenedor-de-ataques{
-    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
