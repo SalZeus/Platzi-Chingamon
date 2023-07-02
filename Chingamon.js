@@ -3,6 +3,7 @@ let ataqueEnemigo=[];
 let historialCombate =[]
 let vidasJugador=3;
 let vidasEnemigo=3;
+let jugadorId = null
 
 let chingamones=[]
 let opcionDeChingamones
@@ -286,6 +287,21 @@ function iniciarJuego(){
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
     
     botonReiniciar.addEventListener("click", reiniciarJuego)
+
+    unirseAlJuego()
+}
+
+function unirseAlJuego(){
+    fetch("http://localhost:8080/unirse")
+    .then(function (res){
+        if(res.ok){
+            res.text()
+                .then(function(respuesta){
+                    console.log(respuesta)
+                    jugadorId = respuesta
+                })
+        }
+    })
 }
 
 function seleccionarMascotaJugador(){
@@ -322,10 +338,22 @@ function seleccionarMascotaJugador(){
         alert("Intenta de nuevo, presiona enter e intenta seleccionar a tu Chingamon!")
     }
     
-    
+    seleccionarChingamon(mascotaJugador)
     extraerAtaques(mascotaJugador)
     iniciarMapa()
     pintarCanvas()
+}
+
+function seleccionarChingamon(mascotaJugador){
+    fetch(`http://localhost:8080/chingamon/${jugadorId}`,{
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chingamon: mascotaJugador
+        })
+    } )
 }
 
 function extraerAtaques(mascotaJugador){
@@ -507,6 +535,9 @@ function pintarCanvas() {
         mapa.height,
     )
     mascotaJugadorObjeto.pintarMokepon()
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
+
     doguegoEnemigo.pintarMokepon()
     pepitasEnemigo.pintarMokepon()
     gacharcoEnemigo.pintarMokepon()
@@ -523,6 +554,20 @@ function pintarCanvas() {
         revisarColision(estreñisaurioEnemigo)
     }
 }
+
+function enviarPosicion(x, y){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y,
+        })
+    })
+}
+
 function moverArriba(){
     mascotaJugadorObjeto.velocidadY = -5
 }
