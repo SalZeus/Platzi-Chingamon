@@ -220,6 +220,20 @@ p{
     margin-inline-start: 0rem;
     margin-inline-end: 0rem;
 }
+.victorias{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#ver-mapa{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mapa{
+    border: 2px solid black;
+}
 
 @media (max-width: 980px){
     .tarjetas{

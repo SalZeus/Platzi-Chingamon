@@ -22,7 +22,6 @@
             <p>Gacharco</br>traguito🥃</p>
         </div>
         <div class="tipos">
-            
             <p>Chindagato</br>pedradas🪨 y fritación🍽️</p>
             <p>Fripez</br>pedradas🪨 y traguito🥃</p>
             <p>Estreñisaurio</br>fritación🍽️ y traguito🥃 </p>
@@ -34,54 +33,72 @@
         <div id="contenedor-de-tarjetas" class="tarjetas">
             </div>
             <button type="button" id="boton-mascota">Zi Confirmo</button><br/>
-        </section>
-        <section id="seleccionar-ataque">
-            <h1 class="titulo" id="chingamon">ChingaMon!</h1>
-            
-            <h2 class="subtitulo">Eligue el tipo de chingadazo!</h2>
-            
-            <div id="contenedor-de-ataques">
-                
-            </div>
-            
-            <div>
-                
-                <section id="mensajes">
-                    <p id="resultado">
-                        Ready... Fight! </br>
-                        *Musica de Mortal Kombat
-                        
-                    </p>
-                </section>
-                
-                
-                <section id="reiniciar">
-                    <button type="button" id="boton-reiniciar">Otra vez plis</button>
-                </section>
-                
-            </div>
-            <div class="combates">
-                
-                <div id="estado-chingamon-jugador">
-                    <p id="vidas-jugador">0</p>
-                    <p id="mascota-jugador"></p>
-                    <div id="ataques-del-jugador"></div>
-                </div>
+    </section>
 
-                <div id="contenedor-combate">
-                    <h2>Historial de chingadazos!</h2>
-                    <div id="historial-combate"></div>
+    <section id="ver-mapa">
+        <h1 class="titulo">Recorre el mapa con tu Chingamon!</h1>
+        <canvas id="mapa"></canvas>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">abajo</button>
+        <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+    </section>
+
+    <section id="seleccionar-ataque">
+        <h1 class="titulo" id="chingamon">ChingaMon!</h1>
+        
+        <h2 class="subtitulo">Eligue el tipo de chingadazo!</h2>
+        
+        <div id="contenedor-de-ataques">
+            
+        </div>
+        
+        <div>
+            
+            <section id="mensajes">
+                <p id="resultado">
+                    Ready... Fight! </br>
+                    *Musica de Mortal Kombat
+                </p>
+            </section>
+            
+            
+            <section id="reiniciar">
+                <button type="button" id="boton-reiniciar">Otra vez plis</button>
+            </section>
+            
+        </div>
+        <div class="combates">
+            
+            <div id="estado-chingamon-jugador">
+                <div class="victorias">
+                    <p>Victorias:  </p>
+                    <p id="vidas-jugador">0</p>
                 </div>
-                
-                <div id="estado-chingamon-enemigo">
-                    <p id="vidas-enemigo">0</p>
-                    <p id="mascota-enemigo"></p>
-                    <div id="ataques-del-enemigo"></div>                
-                </div>
-                
+                <h2 id="mascota-jugador"></h2>
+                <div id="ataques-del-jugador"></div>
+            </div>
+
+            <div id="contenedor-combate">
+                <h2>Historial de chingadazos</h2>
+                <div id="historial-combate"></div>
             </div>
             
-        </section>
-        <script src="Chingamon.js"></script>
+            <div id="estado-chingamon-enemigo">
+                <div class="victorias">
+                    <p>Victorias:  </p>
+                    <p id="vidas-enemigo">0</p>
+                </div>
+                <h2 id="mascota-enemigo"></h2>
+                <div id="ataques-del-enemigo"></div>                
+            </div>
+            
+        </div>
+        
+    </section>
+
+    <!-- no tocar -->
+    <script src="Chingamon.js"></script>
+    <!-- no tocar -->
     </body>
     </html>

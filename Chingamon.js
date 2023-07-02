@@ -37,6 +37,8 @@ const contenedorTarjetas = document.getElementById("contenedor-de-tarjetas")
 const contenedorAtaques = document.getElementById("contenedor-de-ataques")
 const contenedorCombate = document.getElementById("historial-combate")
 
+
+
 const spanMascotaJugador = document.getElementById("mascota-jugador")
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo")
 const spanVidasJugador =document.getElementById("vidas-jugador")
@@ -44,12 +46,25 @@ const spanVidasEnemigo = document.getElementById("vidas-enemigo")
 
 const ataquesDelJugador = document.getElementById("ataques-del-jugador")
 const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
+
+const sectionVerMapa = document.getElementById("ver-mapa")
+const mapa = document.getElementById("mapa")
+let lienzo = mapa.getContext("2d")
+let intervalo
 class Chingamon{
     constructor(nombre, foto, vida){
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.ancho = 80;
+        this.alto = 80;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
     }
 }
 
@@ -109,8 +124,9 @@ estreñisaurio.ataques.push(
 
 function iniciarJuego(){
     sectionSeleccionarAtaque.style.display = "none";
+    sectionVerMapa.style.display ="none";
     botonReiniciar.style.display = "none";
-
+    pintarPersonaje()
 
     chingamones.forEach((chingamon) =>{
         opcionDeChingamones=`
@@ -140,7 +156,10 @@ function seleccionarMascotaJugador(){
 
     sectionSeleccionarMascota.style.display = "none";
     sectionDescripcionMascotas.style.display = "none";
-    sectionSeleccionarAtaque.style.display = "flex";
+    // sectionSeleccionarAtaque.style.display = "flex";
+    sectionVerMapa.style.display = "flex"
+    intervalo = setInterval(pintarPersonaje, 50)
+
 
     if(inputDoguego.checked == true){
         spanMascotaJugador.innerHTML = inputDoguego.id
@@ -296,7 +315,7 @@ function indexAmbosOponentes(jugador, enemigo, combate){
 
 function revisarVidas(){
     if(victoriasJugador == victoriasEnemigo){
-        crearMensajeFinal("Se rompieron uss dientitos, pero abos estan igual de rotos :o")
+        crearMensajeFinal("Se rompieron sus dientitos, pero abos estan igual de rotos :o")
     }
     else if(victoriasJugador>victoriasEnemigo){
         crearMensajeFinal(" Nice, ya le diste piso al pobre, es hora de ir por el siguiente asesinato :3")
@@ -341,5 +360,33 @@ function reiniciarJuego(){
     location.reload()
 }
 
+function pintarPersonaje() { 
+    doguego.x = doguego.x + doguego.velocidadX
+    doguego.y = doguego.y + doguego.velocidadY 
+    lienzo.clearRect(0, 0, mapa.width, mapa.height)
+    lienzo.drawImage(
+      doguego.mapaFoto,
+      doguego.x,
+      doguego.y,
+      doguego.ancho,
+      doguego.alto
+    );
+}
+function moverArriba(){
+    doguego.velocidadY = -5
+}
+function moverIzquierda(){
+    doguego.velocidadX = -5
+}
+function moverAbajo(){
+    doguego.velocidadY = 5
+}
+function moverDerecha(){
+    doguego.velocidadX = 5;
+}
+function detenerMovimiento(){
+    doguego.velocidadX = 0;
+    doguego.velocidadY = 0;
+}
 
 window.addEventListener("load", iniciarJuego)
