@@ -233,7 +233,7 @@ function iniciarJuego(){
 }
 
 function unirseAlJuego(){
-    fetch("http://localhost:8080/unirse")
+    fetch("http://192.168.5.107:8080/unirse")
     .then(function (res){
         if(res.ok){
             res.text()
@@ -247,9 +247,7 @@ function unirseAlJuego(){
 
 function seleccionarMascotaJugador(){
     
-    sectionSeleccionarMascota.style.display = "none";
-    sectionDescripcionMascotas.style.display = "none";
-    sectionVerMapa.style.display = "flex"
+    
     
     if(inputDoguego.checked == true){
         spanMascotaJugador.innerHTML = inputDoguego.id
@@ -277,8 +275,13 @@ function seleccionarMascotaJugador(){
     }
     else{
         alert("Intenta de nuevo, presiona enter e intenta seleccionar a tu Chingamon!")
+        return
     }
-    
+
+    sectionDescripcionMascotas.style.display = "none";
+    sectionVerMapa.style.display = "flex"
+    sectionSeleccionarMascota.style.display = "none";
+
     seleccionarChingamon(mascotaJugador)
     extraerAtaques(mascotaJugador)
     iniciarMapa()
@@ -286,7 +289,7 @@ function seleccionarMascotaJugador(){
 }
 
 function seleccionarChingamon(mascotaJugador){
-    fetch(`http://localhost:8080/chingamon/${jugadorId}`,{
+    fetch(`http://192.168.5.107:8080/chingamon/${jugadorId}`,{
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -362,7 +365,7 @@ function secuenciaAtaque(){
 function enviarAtaques(){
     console.log("ataque enviado")
     console.log(ataqueJugador)
-    fetch(`http://localhost:8080/chingamon/${jugadorId}/ataques`,{
+    fetch(`http://192.168.5.107:8080/chingamon/${jugadorId}/ataques`,{
         method: "post",
         headers: {
             "Content-Type":"application/json"
@@ -375,7 +378,7 @@ function enviarAtaques(){
 }
 
 function obtenerAtaques(){
-    fetch(`http://localhost:8080/chingamon/${enemigoId}/ataques`)
+    fetch(`http://192.168.5.107:8080/chingamon/${enemigoId}/ataques`)
     .then(function(res){
         if(res.ok){
             res.json()
@@ -524,7 +527,7 @@ function pintarCanvas() {
 }
 
 function enviarPosicion(x, y){
-    fetch(`http://localhost:8080/chingamon/${jugadorId}/posicion`, {
+    fetch(`http://192.168.5.107:8080/chingamon/${jugadorId}/posicion`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"

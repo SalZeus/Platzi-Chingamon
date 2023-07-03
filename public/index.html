@@ -38,11 +38,11 @@
     <section id="ver-mapa" >
         <h1 class="titulo">Recorre el mapa con tu Chingamon!</h1>
         <canvas id="mapa"></canvas>
-        <button class="boton-canvas" onmouseup="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
+        <button class="boton-canvas" ontouchstart="moverArriba()" onmouseup="detenerMovimiento()" ontouchend="detenerMovimiento()" onmousedown="moverArriba()">Arriba</button>
         <div class="contenedor-flechas">
-            <button class="boton-canvas" onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
-            <button class="boton-canvas" onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">abajo</button>
-            <button class="boton-canvas" onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
+            <button class="boton-canvas" ontouchstart="moverIzquierda()" onmouseup="detenerMovimiento()" ontouchend="detenerMovimiento()" onmousedown="moverIzquierda()">Izquierda</button>
+            <button class="boton-canvas" ontouchstart="moverAbajo()" onmouseup="detenerMovimiento()" ontouchend="detenerMovimiento()" onmousedown="moverAbajo()">abajo</button>
+            <button class="boton-canvas" ontouchstart="moverDerecha()" onmouseup="detenerMovimiento()" ontouchend="detenerMovimiento()" onmousedown="moverDerecha()">Derecha</button>
         </div>
     </section>
 
