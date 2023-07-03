@@ -20,6 +20,10 @@ class Jugador{
         this.x = x
         this.y = y
     }
+
+    asignarAtaques(ataques){
+        this.ataques = ataques
+    }
 }
 
 class Chingamon{
@@ -55,7 +59,7 @@ app.post("/chingamon/:jugadorId", (req, res)=>{
     res.send({jugadorIndex})
 })
 
-app.post("/mokepon/:jugadorId/posicion", (req, res) => {
+app.post("/chingamon/:jugadorId/posicion", (req, res) => {
     const jugadorId = req.params.jugadorId || "";
     const x = req.body.x || 0;
     const y = req.body.y || 0;
@@ -71,10 +75,24 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
 
     res.send({
         enemigos,
-        response: "response"
+        response: "response",
+        enemigosLog : console.log(enemigos),
       });
     // not sending response to browser
   })
+
+  app.post("/chingamon/:jugadorId/ataques", (req, res)=>{
+    const jugadorId = req.params.jugadorId || ""
+    const ataques = req.body.ataques || []
+
+    const jugadorIndex = jugadores.findIndex((jugador)=>jugadorId===jugador.id)
+
+    if(jugadorIndex>= 0){
+        jugadores[jugadorIndex].asignarAtaques(ataques)
+    }
+
+    res.send({jugadorIndex})
+})
   
 
 app.listen(8080, ()=>{

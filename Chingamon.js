@@ -4,8 +4,10 @@ let historialCombate =[]
 let vidasJugador=3;
 let vidasEnemigo=3;
 let jugadorId = null
+let enemigoId = null
 
 let chingamones=[]
+let chingamonesEnemigos = []
 let opcionDeChingamones
 
 let mascotaJugador
@@ -69,7 +71,7 @@ mapa.width = parseInt(anchoDelMapa)
 mapa.height = parseInt(alturaQueBuscamos)
 
 class Chingamon{
-    constructor(nombre, foto, vida, fotoMapa){
+    constructor(nombre, foto, vida, fotoMapa, id = null){
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
@@ -82,9 +84,10 @@ class Chingamon{
         this.mapaFoto.src = fotoMapa;
         this.velocidadX = 0;
         this.velocidadY = 0;
+        this.id = id
     }
 
-    pintarMokepon(){
+    pintarChingamon(){
         lienzo.drawImage(
             this.mapaFoto,
             this.x,
@@ -133,130 +136,68 @@ let estreñisaurio = new Chingamon(
 )
 // enemigos
 
-let doguegoEnemigo = new Chingamon(
-    "Doguego", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/46693f92-060f-44ea-94f4-5a8a2c78c55c/DreamShaper_v5_fire_dog_small_pet_pokemon_style_anime_lookign_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/cd03cc0e-ecf5-431a-a841-fb2502aee028/variations/Default_fire_dog_small_pet_pokemon_style_anime_lookign_0_cd03cc0e-ecf5-431a-a841-fb2502aee028_0.png",
-)
-let pepitasEnemigo = new Chingamon(
-    "Pepitas", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af3a277b-909a-49e5-90cc-576c02525594/DreamShaper_v5_earth_monster_small_anime_looking_throws_seeds_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/982bbaee-e754-4a7a-82e6-f00a38394d31/variations/Default_earth_monster_small_anime_looking_throws_seeds_0_982bbaee-e754-4a7a-82e6-f00a38394d31_0.png",
-)
-let gacharcoEnemigo = new Chingamon(
-    "Gacharco", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/85df02a1-d2f7-484b-b9d9-78dea44bc8cd/DreamShaper_v5_water_monster_small_anime_looking_throws_water_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/50e7c756-55b9-4a3f-ba05-f78927b9d366/variations/Default_water_monster_small_anime_looking_throws_water_high_pr_0_50e7c756-55b9-4a3f-ba05-f78927b9d366_0.png",
-)
-let chindagatoEnemigo = new Chingamon(
-    "Chindagato", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/ba3bcea2-49a2-4a56-9038-527ce1d5dd6c/DreamShaper_v5_fire_and_earth_monster_small_cat_anime_looking_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af75467c-fead-4239-9f49-c58df9d1baf9/variations/Default_fire_and_earth_monster_small_cat_anime_looking_chibi_c_0_af75467c-fead-4239-9f49-c58df9d1baf9_0.png",
-)
-let fripezEnemigo = new Chingamon(
-    "Fripez", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/7df5eb6c-5bae-476c-a3f9-3a38b3cd4527/DreamShaper_v5_fire_and_water_monster_small_fish_looking_anime_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/948d4118-9a23-48c4-bdd0-ae0325455ce0/variations/Default_fire_and_water_monster_small_fish_looking_anime_lookin_0_948d4118-9a23-48c4-bdd0-ae0325455ce0_0.png",
-)
-let estreñisaurioEnemigo = new Chingamon(
-    "Estreñisaurio", 
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg", 
-    5,
-    "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/d2dfd118-6ecf-4e24-8e96-42f5a7c97a44/variations/Default_fire_and_water_monster_small_dinosaur_looking_anime_lo_0_d2dfd118-6ecf-4e24-8e96-42f5a7c97a44_0.png",
-)
+
+        
+const DOGUEGO_ATAQUES = [
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+]
+const PEPITAS_ATAQUES = [
+    {nombre: "pedradas🪨", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+]
+const GACHARCO_ATAQUES = [
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+]
+const CHINDAGATO_ATAQUES = [
+    {nombre: "fritación🍽️", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+]
+const FRIPEZ_ATAQUES = [
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+    {nombre: "fritación🍽️", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+]
+const ESTREÑISAURIO_ATAQUES = [
+    {nombre: "traguito🥃", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-agua"},
+    {nombre: "fritación🍽️", id: "boton-fuego"},
+    {nombre: "pedradas🪨", id: "boton-agua"},
+    {nombre: "pedradas🪨", id: "boton-tierra"},
+]
+        
+doguego.ataques.push(...DOGUEGO_ATAQUES)
+pepitas.ataques.push(...PEPITAS_ATAQUES)
+gacharco.ataques.push(...GACHARCO_ATAQUES)
+chindagato.ataques.push(...CHINDAGATO_ATAQUES)
+fripez.ataques.push(...FRIPEZ_ATAQUES)
+estreñisaurio.ataques.push(...ESTREÑISAURIO_ATAQUES)
+
+// doguegoEnemigo.ataques.push(...DOGUEGO_ATAQUES)
+// pepitasEnemigo.ataques.push(...PEPITAS_ATAQUES)
+// gacharcoEnemigo.ataques.push(...GACHARCO_ATAQUES)
+// chindagatoEnemigo.ataques.push(...CHINDAGATO_ATAQUES)
+// fripezEnemigo.ataques.push(...FRIPEZ_ATAQUES)
+// estreñisaurioEnemigo.ataques.push(...ESTREÑISAURIO_ATAQUES)
 
 chingamones.push(doguego, pepitas, gacharco, chindagato, fripez, estreñisaurio)
 
-doguego.ataques.push(
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-)
-pepitas.ataques.push(
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-)
-gacharco.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-chindagato.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-fripez.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-estreñisaurio.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
 
-doguegoEnemigo.ataques.push(
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-)
-pepitasEnemigo.ataques.push(
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-)
-gacharcoEnemigo.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-chindagatoEnemigo.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-fripezEnemigo.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
-estreñisaurioEnemigo.ataques.push(
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "traguito🥃", id: "boton-agua"},
-    {nombre: "pedradas🪨", id: "boton-tierra"},
-    {nombre: "fritación🍽️", id: "boton-fuego"},
-)
 
 
 
@@ -410,8 +351,24 @@ function secuenciaAtaque(){
                 boton.style.background = "#2e4b38"
                 boton.disabled="true"
             }
-            ataqueAleatorioEnemigo();
 
+            if(ataqueJugador.length ===5){
+                enviarAtaques()
+            }
+        })
+    })
+}
+
+function enviarAtaques(){
+    console.log("ataque enviado")
+    console.log(ataqueJugador)
+    fetch(`http://localhost:8080/chingamon/${jugadorId}/ataques`,{
+        method: "post",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataqueJugador
         })
     })
 }
@@ -429,7 +386,6 @@ function ataqueAleatorioEnemigo(){
         ataqueEnemigo.push("pedradas🪨")
     }
     iniciarPelea()   
-    console.log(ataqueEnemigo)
 }
 
 function iniciarPelea(){
@@ -534,29 +490,24 @@ function pintarCanvas() {
         mapa.width,
         mapa.height,
     )
-    mascotaJugadorObjeto.pintarMokepon()
+    mascotaJugadorObjeto.pintarChingamon()
 
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y)
 
-    doguegoEnemigo.pintarMokepon()
-    pepitasEnemigo.pintarMokepon()
-    gacharcoEnemigo.pintarMokepon()
-    chindagatoEnemigo.pintarMokepon()
-    fripezEnemigo.pintarMokepon()
-    estreñisaurioEnemigo.pintarMokepon()
-
-    if(mascotaJugadorObjeto.velocidadX != 0||mascotaJugadorObjeto.velocidadY != 0){
-        revisarColision(doguegoEnemigo)
-        revisarColision(pepitasEnemigo)
-        revisarColision(gacharcoEnemigo)
-        revisarColision(chindagatoEnemigo)
-        revisarColision(fripezEnemigo)
-        revisarColision(estreñisaurioEnemigo)
-    }
+    // doguegoEnemigo.pintarChingamon()
+    // pepitasEnemigo.pintarChingamon()
+    // gacharcoEnemigo.pintarChingamon()
+    // chindagatoEnemigo.pintarChingamon()
+    // fripezEnemigo.pintarChingamon()
+    // estreñisaurioEnemigo.pintarChingamon()
+    chingamonesEnemigos.forEach(function(chingamon){
+        chingamon.pintarChingamon()
+        revisarColision(chingamon)
+    })
 }
 
 function enviarPosicion(x, y){
-    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+    fetch(`http://localhost:8080/chingamon/${jugadorId}/posicion`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -566,19 +517,98 @@ function enviarPosicion(x, y){
             y,
         })
     })
+    .then(function (res){
+        if(res.ok){
+            res.json()
+            .then(function({enemigos}){
+                chingamonesEnemigos = enemigos.map(function(enemigo){
+                    console.log(enemigo)
+                    console.log(enemigos)
+                    let chingamonEnemigo
+                    const chingamonNombre = enemigo.chingamon.nombre || console.log(enemigo.Chingamon)
+                    
+                    if(chingamonNombre === "Doguego"){
+                        chingamonEnemigo = new Chingamon(
+                            "Doguego", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/46693f92-060f-44ea-94f4-5a8a2c78c55c/DreamShaper_v5_fire_dog_small_pet_pokemon_style_anime_lookign_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/cd03cc0e-ecf5-431a-a841-fb2502aee028/variations/Default_fire_dog_small_pet_pokemon_style_anime_lookign_0_cd03cc0e-ecf5-431a-a841-fb2502aee028_0.png",
+                        )
+
+                    }
+                    else if(chingamonNombre === "Pepitas"){
+                        chingamonEnemigo = new Chingamon(
+                            "Pepitas", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af3a277b-909a-49e5-90cc-576c02525594/DreamShaper_v5_earth_monster_small_anime_looking_throws_seeds_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/982bbaee-e754-4a7a-82e6-f00a38394d31/variations/Default_earth_monster_small_anime_looking_throws_seeds_0_982bbaee-e754-4a7a-82e6-f00a38394d31_0.png",
+                        )
+
+                    }
+                    else if(chingamonNombre === "Gacharco"){
+                        chingamonEnemigo = new Chingamon(
+                            "Gacharco", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/85df02a1-d2f7-484b-b9d9-78dea44bc8cd/DreamShaper_v5_water_monster_small_anime_looking_throws_water_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/50e7c756-55b9-4a3f-ba05-f78927b9d366/variations/Default_water_monster_small_anime_looking_throws_water_high_pr_0_50e7c756-55b9-4a3f-ba05-f78927b9d366_0.png",
+                        )
+
+                    }
+                    else if(chingamonNombre === "Chindagato"){
+                        chingamonEnemigo = new Chingamon(
+                            "Chindagato", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/ba3bcea2-49a2-4a56-9038-527ce1d5dd6c/DreamShaper_v5_fire_and_earth_monster_small_cat_anime_looking_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af75467c-fead-4239-9f49-c58df9d1baf9/variations/Default_fire_and_earth_monster_small_cat_anime_looking_chibi_c_0_af75467c-fead-4239-9f49-c58df9d1baf9_0.png",
+                        )
+
+                    }
+                    else if(chingamonNombre === "Fripez"){
+                        chingamonEnemigo = new Chingamon(
+                            "Fripez", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/7df5eb6c-5bae-476c-a3f9-3a38b3cd4527/DreamShaper_v5_fire_and_water_monster_small_fish_looking_anime_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/948d4118-9a23-48c4-bdd0-ae0325455ce0/variations/Default_fire_and_water_monster_small_fish_looking_anime_lookin_0_948d4118-9a23-48c4-bdd0-ae0325455ce0_0.png",
+                        )
+
+                    }
+                    else if(chingamonNombre === "Estreñisaurio"){
+                        chingamonEnemigo = new Chingamon(
+                            "Estreñisaurio", 
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg", 
+                            5,
+                            "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/d2dfd118-6ecf-4e24-8e96-42f5a7c97a44/variations/Default_fire_and_water_monster_small_dinosaur_looking_anime_lo_0_d2dfd118-6ecf-4e24-8e96-42f5a7c97a44_0.png",
+                        )
+
+                    }
+                    else if (enemigo.mokepon != undefined) {
+                        console.log("no hay enemigo")
+                    }
+                    else{
+                        console.log("c:")
+                    }
+
+                    chingamonEnemigo.x = enemigo.x
+                    chingamonEnemigo.y =  enemigo.y  
+
+                    return chingamonEnemigo
+                })
+            })
+        }
+    })
 }
 
 function moverArriba(){
-    mascotaJugadorObjeto.velocidadY = -5
+    mascotaJugadorObjeto.velocidadY = -15
 }
 function moverIzquierda(){
-    mascotaJugadorObjeto.velocidadX = -5
+    mascotaJugadorObjeto.velocidadX = -15
 }
 function moverAbajo(){
-    mascotaJugadorObjeto.velocidadY = 5
+    mascotaJugadorObjeto.velocidadY = 15
 }
 function moverDerecha(){
-    mascotaJugadorObjeto.velocidadX = 5;
+    mascotaJugadorObjeto.velocidadX = 15;
 }
 function detenerMovimiento(){
     mascotaJugadorObjeto.velocidadX = 0;
@@ -638,7 +668,9 @@ function revisarColision(enemigo){
     }
     detenerMovimiento()
     clearInterval(intervalo)
-    console.log("se detecto una solision");
+    console.log("se detecto una colision");
+    enemigoId = enemigo.id
+    console.log(enemigoId)
     sectionSeleccionarAtaque.style.display = "flex";
     sectionVerMapa.style.display = "none"
     // alert("Tu " +mascotaJugadorObjeto.nombre+ " ha chocao con un " + enemigo.nombre+ " shalvaje :o")
