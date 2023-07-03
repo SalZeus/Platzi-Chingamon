@@ -85,15 +85,22 @@ app.post("/chingamon/:jugadorId/posicion", (req, res) => {
     const jugadorId = req.params.jugadorId || ""
     const ataques = req.body.ataques || []
 
-    const jugadorIndex = jugadores.findIndex((jugador)=>jugadorId===jugador.id)
+    const jugadorIndex = jugadores.findIndex((jugador)=>jugador.id===jugadorId)
 
     if(jugadorIndex>= 0){
         jugadores[jugadorIndex].asignarAtaques(ataques)
     }
 
-    res.send({jugadorIndex})
+    res.send({ataques})
 })
   
+app.get("/chingamon/:jugadorId/ataques", (req, res)=>{
+    const jugadorId = req.params.jugadorId || ""
+    const jugador = jugadores.find((jugador)=>jugador.id ===jugadorId)
+    res.send({
+        ataques: jugador.ataques||[]
+    })
+})
 
 app.listen(8080, ()=>{
     console.log("servidor funcionando")

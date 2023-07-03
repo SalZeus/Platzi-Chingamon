@@ -369,7 +369,23 @@ function enviarAtaques(){
         },
         body: JSON.stringify({
             ataques: ataqueJugador
-        })
+        }),
+    })
+    intervalo = setInterval(obtenerAtaques, 50)
+}
+
+function obtenerAtaques(){
+    fetch(`http://localhost:8080/chingamon/${enemigoId}/ataques`)
+    .then(function(res){
+        if(res.ok){
+            res.json()
+            .then(function({ ataques }){
+                if(ataques.length===5){
+                    ataqueEnemigo = ataques
+                    combate()
+                }
+            })
+        }
     })
 }
 
@@ -398,6 +414,7 @@ function iniciarPelea(){
 };
 
 function combate(){
+    clearInterval(intervalo)
     
     for (let i = 0; i < ataqueJugador.length; i++) {
         if(ataqueJugador[i] === ataqueEnemigo[i]){
@@ -533,6 +550,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/46693f92-060f-44ea-94f4-5a8a2c78c55c/DreamShaper_v5_fire_dog_small_pet_pokemon_style_anime_lookign_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/cd03cc0e-ecf5-431a-a841-fb2502aee028/variations/Default_fire_dog_small_pet_pokemon_style_anime_lookign_0_cd03cc0e-ecf5-431a-a841-fb2502aee028_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -542,6 +560,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af3a277b-909a-49e5-90cc-576c02525594/DreamShaper_v5_earth_monster_small_anime_looking_throws_seeds_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/982bbaee-e754-4a7a-82e6-f00a38394d31/variations/Default_earth_monster_small_anime_looking_throws_seeds_0_982bbaee-e754-4a7a-82e6-f00a38394d31_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -551,6 +570,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/85df02a1-d2f7-484b-b9d9-78dea44bc8cd/DreamShaper_v5_water_monster_small_anime_looking_throws_water_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/50e7c756-55b9-4a3f-ba05-f78927b9d366/variations/Default_water_monster_small_anime_looking_throws_water_high_pr_0_50e7c756-55b9-4a3f-ba05-f78927b9d366_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -560,6 +580,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/ba3bcea2-49a2-4a56-9038-527ce1d5dd6c/DreamShaper_v5_fire_and_earth_monster_small_cat_anime_looking_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/af75467c-fead-4239-9f49-c58df9d1baf9/variations/Default_fire_and_earth_monster_small_cat_anime_looking_chibi_c_0_af75467c-fead-4239-9f49-c58df9d1baf9_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -569,6 +590,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/7df5eb6c-5bae-476c-a3f9-3a38b3cd4527/DreamShaper_v5_fire_and_water_monster_small_fish_looking_anime_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/948d4118-9a23-48c4-bdd0-ae0325455ce0/variations/Default_fire_and_water_monster_small_fish_looking_anime_lookin_0_948d4118-9a23-48c4-bdd0-ae0325455ce0_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -578,6 +600,7 @@ function enviarPosicion(x, y){
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/dad2fa2a-002c-46f8-ac7c-e1f0656609c8/DreamShaper_v5_fire_and_water_monster_small_dinosaur_looking_a_0.jpg", 
                             5,
                             "https://cdn.leonardo.ai/users/25acf724-d0fb-44e7-8da5-a5932af5eac9/generations/d2dfd118-6ecf-4e24-8e96-42f5a7c97a44/variations/Default_fire_and_water_monster_small_dinosaur_looking_anime_lo_0_d2dfd118-6ecf-4e24-8e96-42f5a7c97a44_0.png",
+                            enemigo.id
                         )
 
                     }
@@ -668,7 +691,7 @@ function revisarColision(enemigo){
     }
     detenerMovimiento()
     clearInterval(intervalo)
-    console.log("se detecto una colision");
+    console.log("se detecto una colision" +enemigo+" "+enemigoId);
     enemigoId = enemigo.id
     console.log(enemigoId)
     sectionSeleccionarAtaque.style.display = "flex";
